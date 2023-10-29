@@ -54,16 +54,19 @@ def main():
     if mongo.get_database("college").get_collection("questions") is not None:
         mongo.get_database("college").drop_collection("questions")
     
+    print(f"Creating {len(students)} students...")
     students_coll = mongo.get_database("college").create_collection("students")
     students_coll.insert_many(students)
     students_coll.create_index("student_id", unique=True)
 
     questions = generate_question_set(wordlist)
+    print(f"Creating {len(questions)} questions...")
     questions_coll = mongo.get_database("college").create_collection("questions")
     questions_coll.insert_many(questions)
 
     quiz = mongo.get_database("college").create_collection("quiz")
 
+    print(f"Creating {len(students)} x 1000 answers...")
     for student in students:
         # Get student UUID in Mongo
         student_uuid = students_coll.find_one({"student_id": student["student_id"]})["_id"]
