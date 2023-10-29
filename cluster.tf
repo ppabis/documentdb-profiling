@@ -26,5 +26,6 @@ resource "aws_docdb_cluster_instance" "myinstance" {
 }
 
 output "host-port" {
-  value = "${aws_docdb_cluster.mycluster.endpoint}:${aws_docdb_cluster.mycluster.port}"
+  value     = "${aws_docdb_cluster.mycluster.master_username}:${aws_docdb_cluster.mycluster.master_password}@${aws_docdb_cluster.mycluster.endpoint}:${aws_docdb_cluster.mycluster.port}"
+  sensitive = true
 }
