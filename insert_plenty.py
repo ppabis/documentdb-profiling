@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import pymongo, requests, uuid, random, os
 
 """
