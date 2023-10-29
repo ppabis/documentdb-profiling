@@ -15,11 +15,13 @@ resource "aws_security_group" "all-egress" {
 }
 
 resource "aws_instance" "TestInstance" {
-  ami                    = data.aws_ssm_parameter.AmazonLinux.value
-  instance_type          = "t4g.nano"
-  iam_instance_profile   = aws_iam_instance_profile.test-ssm.name
-  subnet_id              = data.aws_subnet.public-a.id
-  vpc_security_group_ids = [aws_security_group.all-egress.id]
+  ami                         = data.aws_ssm_parameter.AmazonLinux.value
+  instance_type               = "t4g.nano"
+  iam_instance_profile        = aws_iam_instance_profile.test-ssm.name
+  subnet_id                   = data.aws_subnet.public-a.id
+  vpc_security_group_ids      = [aws_security_group.all-egress.id]
+  user_data                   = file("user_data.sh")
+  user_data_replace_on_change = true
 }
 
 output "ssm-command" {
