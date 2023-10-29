@@ -22,6 +22,7 @@ resource "aws_instance" "TestInstance" {
   vpc_security_group_ids      = [aws_security_group.all-egress.id]
   user_data                   = file("user_data.sh")
   user_data_replace_on_change = true
+  depends_on                  = [aws_ssm_parameter.insert_plenty, aws_ssm_parameter.query_much]
 }
 
 output "ssm-command" {
