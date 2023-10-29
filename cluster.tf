@@ -14,6 +14,8 @@ resource "aws_docdb_cluster" "mycluster" {
   master_username                 = "administrator"
   master_password                 = "Staple3-Battery2-Horse1"
   enabled_cloudwatch_logs_exports = ["profiler"]
+  db_cluster_parameter_group_name = aws_docdb_cluster_parameter_group.profiler-params.id
+  apply_immediately               = true
 }
 
 resource "aws_docdb_cluster_instance" "myinstance" {
