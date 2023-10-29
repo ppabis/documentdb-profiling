@@ -9,10 +9,11 @@ resource "aws_docdb_cluster" "mycluster" {
   db_subnet_group_name   = aws_docdb_subnet_group.subnets.id
   vpc_security_group_ids = [aws_security_group.documentdb.id]
   # Cluster settings
-  engine          = "docdb"
-  engine_version  = "4.0.0"
-  master_username = "administrator"
-  master_password = "Staple3-Battery2-Horse1"
+  engine                          = "docdb"
+  engine_version                  = "4.0.0"
+  master_username                 = "administrator"
+  master_password                 = "Staple3-Battery2-Horse1"
+  enabled_cloudwatch_logs_exports = ["profiler"]
 }
 
 resource "aws_docdb_cluster_instance" "myinstance" {
