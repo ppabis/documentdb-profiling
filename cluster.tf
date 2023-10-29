@@ -25,7 +25,7 @@ resource "aws_docdb_cluster_instance" "myinstance" {
   identifier         = "myinstance"
 }
 
-output "host-port" {
+output "mongo_url" {
   value     = "${aws_docdb_cluster.mycluster.master_username}:${aws_docdb_cluster.mycluster.master_password}@${aws_docdb_cluster.mycluster.endpoint}:${aws_docdb_cluster.mycluster.port}"
   sensitive = true
 }
